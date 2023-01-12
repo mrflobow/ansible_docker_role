@@ -1,0 +1,4 @@
+- name: Add Docker dependencies
+  ansible.builtin.apt:
+    name: "{{ repo_pkgs }}"
+    update_cache: yes

@@ -1,0 +1,5 @@
+repo_pkgs:
+  - ca-certificates 
+  - curl 
+  - gnupg 
+  - lsb-release
