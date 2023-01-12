@@ -3,3 +3,9 @@ repo_pkgs:
   - curl 
   - gnupg 
   - lsb-release
+
+docker_pkgs:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-compose-plugin

@@ -2,3 +2,23 @@
   ansible.builtin.apt:
     name: "{{ repo_pkgs }}"
     update_cache: yes
+
+- name: Create keyring folder
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+
+- name: Keyring deployment
+  ansible.builtin.shell: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  args:
+    executable: /bin/bash
+
+- name: Add Docker Repo
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install Docker
+  ansible.builtin.apt:
+    name: "{{ docker_pkgs }}"
+    update_cache: yes
